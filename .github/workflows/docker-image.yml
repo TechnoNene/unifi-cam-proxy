@@ -36,5 +36,5 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker-compose build
-          docker tag <your-image-name> <your-dockerhub-username>/<your-image-name>:latest
-          docker push <your-dockerhub-username>/<your-image-name>:latest
+          docker tag unifi-cam-proxy_unifi-cam-proxy ${{ secrets.DOCKER_USERNAME }}/unifi-cam-proxy:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/unifi-cam-proxy:latest
