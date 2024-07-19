@@ -55,11 +55,13 @@ class HikvisionCam(UnifiCamBase):
             pass
         return img_file
 
-    async def check_ptz_support(self, channel) -> bool:
+    async def check_ptz_support(self) -> bool:
         try:
-            await self.cam.PTZCtrl.channels[channel].capabilities(method="get")
-            self.logger.info("Detected PTZ support")
-            return True
+            r = await self.cam.PTZCtrl.channels[self.channel].capabilities(method="get")
+
+            if r['PTZChannelCap']['enabled']:
+                self.logger.info("Detected PTZ support")
+                return True
         except (httpx.RequestError, httpx.HTTPStatusError):
             pass
         return False
@@ -124,7 +126,7 @@ class HikvisionCam(UnifiCamBase):
             self.motion_in_progress = False
 
     async def run(self) -> None:
-        self.ptz_supported = await self.check_ptz_support(self.channel)
+        self.ptz_supported = await self.check_ptz_support()
         return
 
         # while True:
