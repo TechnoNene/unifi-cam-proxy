@@ -3,12 +3,14 @@ import json
 import logging
 import tempfile
 from pathlib import Path
+import string
+from random import choices
 
 import aiohttp
 import reolinkapi
 from yarl import URL
 
-from unifi.cams.base import UnifiCamBase
+from unifi.cams.base import UnifiCamBase #, SmartDetectObjectType
 
 
 class Reolink(UnifiCamBase):
@@ -62,11 +64,12 @@ class Reolink(UnifiCamBase):
         )
 
     async def get_snapshot(self) -> Path:
+        rs = ''.join(choices(string.ascii_uppercase + string.digits, k=10))
         img_file = Path(self.snapshot_dir, "screen.jpg")
         url = (
             f"http://{self.args.ip}"
             f"/cgi-bin/api.cgi?cmd=Snap&channel={self.args.channel}"
-            f"&rs=6PHVjvf0UntSLbyT&user={self.args.username}"
+            f"&rs={rs}&user={self.args.username}"
             f"&password={self.args.password}"
         )
         self.logger.info(f"Grabbing snapshot: {url}")
@@ -76,15 +79,18 @@ class Reolink(UnifiCamBase):
     async def run(self) -> None:
         url = (
             f"http://{self.args.ip}"
+            # f"/api.cgi?cmd=GetAiState&user={self.args.username}"
             f"/api.cgi?cmd=GetMdState&user={self.args.username}"
             f"&password={self.args.password}"
         )
         encoded_url = URL(url, encoded=True)
 
         body = (
+            # f'[{{ "cmd":"GetAiState", "param":{{ "channel":{self.args.channel} }} }}]'
             f'[{{ "cmd":"GetMdState", "param":{{ "channel":{self.args.channel} }} }}]'
         )
         while True:
+            # self.logger.info(f"Connecting to AI person motion events API: {url}")
             self.logger.info(f"Connecting to motion events API: {url}")
             try:
                 async with aiohttp.ClientSession(
@@ -97,11 +103,14 @@ class Reolink(UnifiCamBase):
                             try:
                                 json_body = json.loads(data)
                                 if "value" in json_body[0]:
+                                    # if json_body[0]["value"]["people"]["alarm_state"] == 1:
                                     if json_body[0]["value"]["state"] == 1:
                                         if not self.motion_in_progress:
                                             self.motion_in_progress = True
                                             self.logger.info("Trigger motion start")
+                                            # await self.trigger_motion_start(SmartDetectObjectType.PERSON)
                                             await self.trigger_motion_start()
+                                    # elif json_body[0]["value"]["people"]["alarm_state"] == 0:
                                     elif json_body[0]["value"]["state"] == 0:
                                         if self.motion_in_progress:
                                             self.motion_in_progress = False
@@ -132,8 +141,8 @@ class Reolink(UnifiCamBase):
             fps = self.stream_fps[1]
 
         return (
-            "-ar 32000 -ac 1 -codec:a aac -b:a 32k -c:v copy -vbsf"
-            f' "h264_metadata=tick_rate={fps*2}"'
+            "-acodec copy -c:v copy -vbsf"
+            f' "h264_metadata=tick_rate={fps * 2}"'
         )
 
     async def get_stream_source(self, stream_index: str) -> str:

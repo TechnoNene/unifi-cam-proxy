@@ -6,9 +6,9 @@ services:
     volumes:
       - './client.pem:/client.pem'
     environment:
-      - "HOST=192.168.103.180"
+      - "HOST=192.168.178.1"
       - "TOKEN=UojOceUtnvtaxpiY"
-      - "RTSP_URL=rtsp://freja.hiof.no:1935/rtplive/definst/hessdalen03.stream"
+      - "RTSP_URL=rtsp://192.168.178.202:554"
     restart: always
   unifi-video-controller:
     image:  pducharme/unifi-video-controller
@@ -28,7 +28,7 @@ services:
       - ./run/data:/var/lib/unifi-video
       - ./run/videos:/var/lib/unifi-video/videos
     environment:
-      - TZ=America/Los_Angeles
+      - TZ=Etc/UTC
       - DEBUG=1
     cap_add:
       - SYS_ADMIN
@@ -50,7 +50,7 @@ services:
         - './run/protect/db_config:/etc/postgresql/10/main'
         - './run/protect/config.json:/usr/share/unifi-protect/app/config/config.json'
     environment:
-        - TZ=America/Los_Angeles
+        - TZ=Etc/UTC
         - PUID=999
         - PGID=999
         - PUID_POSTGRES=102
