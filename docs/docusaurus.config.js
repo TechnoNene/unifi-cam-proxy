@@ -13,7 +13,7 @@ const config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'zacharee', // Usually your GitHub org/user name.
+  organizationName: 'technonene', // Usually your GitHub org/user name.
   projectName: 'unifi-cam-proxy', // Usually your repo name.
   trailingSlash: false,
   presets: [
