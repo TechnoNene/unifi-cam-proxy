@@ -46,7 +46,7 @@ version: "3.9"
 services:
   unifi-cam-proxy:
     restart: unless-stopped
-    build: https://github.com/zacharee/unifi-cam-proxy.git
+    build: https://github.com/technonene/unifi-cam-proxy.git
     volumes:
       - "./client.pem:/client.pem"
     command: unifi-cam-proxy --host {NVR IP} --cert /client.pem --token {Adoption token} rtsp -s rtsp://192.168.201.15:8554/cam'
@@ -65,7 +65,7 @@ version: "3.5"
 services:
   proxy-1:
     restart: unless-stopped
-    build: https://github.com/zacharee/unifi-cam-proxy.git
+    build: https://github.com/technonene/unifi-cam-proxy.git
     volumes:
       - "./client.pem:/client.pem"
     command: >-
@@ -77,7 +77,7 @@ services:
         rtsp -s rtsp://192.168.201.15:8554/cam
   proxy-2:
     restart: unless-stopped
-    build: https://github.com/zacharee/unifi-cam-proxy.git
+    build: https://github.com/technonene/unifi-cam-proxy.git
     volumes:
       - "./client.pem:/client.pem"
     command: >-
@@ -91,7 +91,7 @@ services:
 
 ## Bare Metal
 
-If you cannot use Docker, you may install the proxy on most Linux distros, but support is not guaranteed.
+If you cannot use Docker, you can try to install the proxy on most Linux distros, but support is not guaranteed and may not be given by me.
 Find instructions for your distro below:
 
 ### Ubuntu/Debian
