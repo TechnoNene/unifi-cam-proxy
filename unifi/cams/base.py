@@ -84,7 +84,7 @@ class UnifiCamBase(metaclass=ABCMeta):
         parser.add_argument(
             "--format",
             default="flv",
-            help="Set the ffpmeg output format",
+            help="Set the ffmpeg output format",
         )
 
     async def _run(self, ws) -> None:
