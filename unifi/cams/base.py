@@ -485,7 +485,7 @@ class UnifiCamBase(metaclass=ABCMeta):
                         "sourceId": 0,
                         "streamId": 1,
                         "streamOrdinal": 0,
-                        "type": "h264",
+                        "type": self.args.video_codec,
                         "validBitrateRangeMax": 2800000,
                         "validBitrateRangeMin": 32000,
                         "validFpsValues": [
@@ -547,7 +547,7 @@ class UnifiCamBase(metaclass=ABCMeta):
                         "sourceId": 1,
                         "streamId": 2,
                         "streamOrdinal": 1,
-                        "type": "h264",
+                        "type": self.args.video_codec,
                         "validBitrateRangeMax": 1500000,
                         "validBitrateRangeMin": 32000,
                         "validFpsValues": [
@@ -609,7 +609,7 @@ class UnifiCamBase(metaclass=ABCMeta):
                         "sourceId": 2,
                         "streamId": 4,
                         "streamOrdinal": 2,
-                        "type": "h264",
+                        "type": self.args.video_codec,
                         "validBitrateRangeMax": 750000,
                         "validBitrateRangeMin": 32000,
                         "validFpsValues": [
