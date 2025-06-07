@@ -88,7 +88,27 @@
     <header>
       <h1>About</h1>
     </header>
-    <p>unifi-cam-proxy adds UniFi Protect compatibility to non-UniFi cameras. It extends basic ONVIF functionality with motion and smart detections, MQTT integration for Frigate and support for RTSP cameras that lack ONVIF.</p>
+    <p>unifi-cam-proxy adds UniFi Protect compatibility to non-UniFi cameras. It goes beyond the basic third-party camera functionality of UniFi Protect for ONVIF Cameras added by Ubiquiti, key features:</p>
+    <ol>
+        <li>
+            <p>Simulates a Ubiquiti camera, in order to work with Protect</p>
+        </li>
+        <li>
+            <p>Motion detection allows to record only when motion is detected</p>
+        </li>
+        <li>
+            <p>Smart detections record when people or cars are detected, for example</p>
+        </li>
+        <li>
+            <p>Custom support for certain cameras, like Hikvision</p>
+        </li>
+        <li>
+            <p>Supports any RTSP camera, even without ONVIF support</p>
+        </li>
+        <li>
+            <p>Allows to create multiple instances, in case you want to add multiple NVR/DVR cameras to protect, as with current ONVIF support only a single camera per ONVIF device is supported</p>
+        </li>
+    </ol>
   </div>
 </article>
 
