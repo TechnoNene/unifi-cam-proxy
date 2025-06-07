@@ -14,7 +14,19 @@ unifi-cam-proxy -H {NVR IP} -i {camera IP} -c /client.pem -t {Adoption token} \
     -u {username} \
     -p {password} \
     -s "main" \
+    --video-codec h264 \
     --ffmpeg-args='-c:v copy -bsf:v "h264_metadata=tick_rate=60000/1001" -ar 32000 -ac 1 -codec:a aac -b:a 32k'
+
+# For cameras streaming H.265 use the following:
+
+```sh
+unifi-cam-proxy -H {NVR IP} -i {camera IP} -c /client.pem -t {Adoption token} \
+    reolink \
+    -u {username} \
+    -p {password} \
+    -s "main" \
+    --video-codec h265 \
+    --ffmpeg-args='-c:v copy -bsf:v "hevc_metadata=tick_rate=60000/1001" -ar 32000 -ac 1 -codec:a aac -b:a 32k'
 ```
 
 ## Options

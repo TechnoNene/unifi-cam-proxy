@@ -86,6 +86,12 @@ class UnifiCamBase(metaclass=ABCMeta):
             default="flv",
             help="Set the ffmpeg output format",
         )
+        parser.add_argument(
+            "--video-codec",
+            default="h264",
+            choices=["h264", "h265"],
+            help="Video codec used by the camera stream",
+        )
 
     async def _run(self, ws) -> None:
         self._session = ws
@@ -957,11 +963,24 @@ class UnifiCamBase(metaclass=ABCMeta):
 
         if not has_spawned or is_dead:
             source = await self.get_stream_source(stream_index)
+
+            if self.args.video_codec == "h265" and self.args.format not in (
+                "flv",
+                "extendedFlv",
+            ):
+                raise ValueError(
+                    "HEVC streams require output format 'flv' or 'extendedFlv'"
+                )
+
+            extra_args = self.get_extra_ffmpeg_args(stream_index)
+            if self.args.video_codec == "h265" and "hevc_metadata" not in extra_args:
+                extra_args += ' -bsf:v "hevc_metadata=aud=insert"'
+
             cmd = (
                 f"AV_LOG_FORCE_NOCOLOR=1 ffmpeg -nostdin -loglevel level+{self.args.loglevel} -y"
                 f" {self.get_base_ffmpeg_args(stream_index)} -rtsp_transport"
                 f' {self.args.rtsp_transport} -i "{source}"'
-                f" {self.get_extra_ffmpeg_args(stream_index)} -metadata"
+                f" {extra_args} -metadata"
                 f" streamName={stream_name} -f {self.args.format} - | {sys.executable} -m"
                 " unifi.clock_sync"
                 f" --timestamp-modifier {self.args.timestamp_modifier} | nc"
