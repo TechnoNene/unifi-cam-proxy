@@ -468,7 +468,7 @@ class UnifiCamBase(metaclass=ABCMeta):
                         "enabled": True,
                         "fps": 20,
                         "gopModel": 0,
-                        "height": 1920,
+                        "height": 720,
                         "horizontalFlip": False,
                         "isCbr": False,
                         "maxFps": 30,
@@ -502,7 +502,7 @@ class UnifiCamBase(metaclass=ABCMeta):
                             30,
                         ],
                         "verticalFlip": False,
-                        "width": 2560,
+                        "width": 1280,
                     },
                     "video2": {
                         "M": 1,
