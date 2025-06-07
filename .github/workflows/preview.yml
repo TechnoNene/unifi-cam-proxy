@@ -10,7 +10,6 @@ on:
         - opened
         - synchronize
   workflow_dispatch:
-    branches: ["gh-pages"]
     inputs:
       pr_number:
         description: Pull request number to preview
