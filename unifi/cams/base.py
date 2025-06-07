@@ -78,13 +78,28 @@ class UnifiCamBase(metaclass=ABCMeta):
         parser.add_argument(
             "--loglevel",
             default="error",
-            choices=["trace", "debug", "verbose", "info", "warning", "error", "fatal", "panic", "quiet"],
+            choices=[
+                "trace",
+                "debug",
+                "verbose",
+                "info",
+                "warning",
+                "error",
+                "fatal",
+                "panic",
+                "quiet",
+            ],
             help="Set the ffmpeg log level",
         )
         parser.add_argument(
             "--format",
             default="flv",
             help="Set the ffmpeg output format",
+        )
+        parser.add_argument(
+            "--video-codec",
+            default="h264",
+            help="Codec to advertise for video streams",
         )
 
     async def _run(self, ws) -> None:
@@ -479,7 +494,7 @@ class UnifiCamBase(metaclass=ABCMeta):
                         "sourceId": 0,
                         "streamId": 1,
                         "streamOrdinal": 0,
-                        "type": "h264",
+                        "type": self.args.video_codec,
                         "validBitrateRangeMax": 2800000,
                         "validBitrateRangeMin": 32000,
                         "validFpsValues": [
@@ -541,7 +556,7 @@ class UnifiCamBase(metaclass=ABCMeta):
                         "sourceId": 1,
                         "streamId": 2,
                         "streamOrdinal": 1,
-                        "type": "h264",
+                        "type": self.args.video_codec,
                         "validBitrateRangeMax": 1500000,
                         "validBitrateRangeMin": 32000,
                         "validFpsValues": [
@@ -603,7 +618,7 @@ class UnifiCamBase(metaclass=ABCMeta):
                         "sourceId": 2,
                         "streamId": 4,
                         "streamOrdinal": 2,
-                        "type": "h264",
+                        "type": self.args.video_codec,
                         "validBitrateRangeMax": 750000,
                         "validBitrateRangeMin": 32000,
                         "validFpsValues": [
@@ -872,7 +887,7 @@ class UnifiCamBase(metaclass=ABCMeta):
                 "UpdateFirmwareRequest",
                 "Reboot",
                 "ubnt_avclient_hello",
-                "ContinuousMove"
+                "ContinuousMove",
             ]
         ):
             return False
@@ -975,7 +990,9 @@ class UnifiCamBase(metaclass=ABCMeta):
                 f"Spawning ffmpeg for {stream_index} ({stream_name}): {cmd}"
             )
             self._ffmpeg_handles[stream_index] = subprocess.Popen(
-                cmd, stderr=subprocess.STDOUT, shell=True,
+                cmd,
+                stderr=subprocess.STDOUT,
+                shell=True,
             )
 
     def stop_video_stream(self, stream_index: str):
