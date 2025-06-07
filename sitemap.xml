@@ -15,6 +15,16 @@
         <priority>0.5</priority>
     </url>
     <url>
+        <loc>https://.github.io/unifi-cam-proxy/about</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://.github.io/unifi-cam-proxy/installation</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
         <loc>https://.github.io/unifi-cam-proxy/configuration/amcrest</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
