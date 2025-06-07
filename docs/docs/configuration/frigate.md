@@ -20,6 +20,19 @@ unifi-cam-proxy --mac '{unique MAC}' -H {NVR IP} -i {camera IP} -c /client.pem -
     --frigate-camera {Name of camera in frigate}
 ```
 
+## H.265 Example
+
+```sh
+unifi-cam-proxy --mac '{unique MAC}' -H {NVR IP} -i {camera IP} -c /client.pem -t {Adoption token} \
+    frigate \
+    -s {rtsp source} \
+    --mqtt-host {mqtt host} \
+    --mqtt-username {mqtt username} \
+    --mqtt-password {mqtt password} \
+    --frigate-camera {Name of camera in frigate} \
+    --video-codec h265
+```
+
 ## Options
 
 ```text
@@ -45,4 +58,6 @@ optional arguments:
                         Topic prefix
   --frigate-camera FRIGATE_CAMERA
                         Name of camera in frigate
+  --video-codec {h264,h265}
+                        Select video codec for Protect streams
 ```

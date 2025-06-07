@@ -29,6 +29,18 @@ unifi-cam-proxy -H {NVR IP} -i {camera IP} -c /client.pem -t {Adoption token} \
     --ffmpeg-args='-c:v copy -bsf:v "hevc_metadata=tick_rate=60000/1001" -ar 32000 -ac 1 -codec:a aac -b:a 32k'
 ```
 
+### H.265 Example
+
+```sh
+unifi-cam-proxy -H {NVR IP} -i {camera IP} -c /client.pem -t {Adoption token} \
+    reolink \
+    -u {username} \
+    -p {password} \
+    -s "main" \
+    --video-codec h265 \
+    --ffmpeg-args='-c:v copy -ar 32000 -ac 1 -codec:a aac -b:a 32k'
+```
+
 ## Options
 
 ```text
@@ -44,7 +56,9 @@ optional arguments:
                         Camera password
   --substream SUBSTREAM, -s CHANNEL
                         Camera rtsp url substream index main, or sub
-```  
+  --video-codec {h264,h265}
+                        Select video codec for Protect streams
+```
 
 ## RLC-410-5MP
 

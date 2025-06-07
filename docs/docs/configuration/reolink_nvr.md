@@ -19,7 +19,9 @@ optional arguments:
                         NVR password
   --channel CHANNEL, -c CHANNEL
                         NVR camera channel
-```  
+  --video-codec {h264,h265}
+                        Select video codec for Protect streams
+```
 
 ## NVR (Reolink RLN16-410)
 
@@ -35,4 +37,15 @@ unifi-cam-proxy --mac '{unique MAC}' -H {Protect IP} -i {Reolink NVR IP} -c /cli
     -u {username} \
     -p {password} \
     -c {Camera channel}
+```
+
+### H.265 Example
+
+```sh
+unifi-cam-proxy --mac '{unique MAC}' -H {Protect IP} -i {Reolink NVR IP} -c /client.pem -t {Adoption token} \
+    reolink_nvr \
+    -u {username} \
+    -p {password} \
+    -c {Camera channel} \
+    --video-codec h265
 ```
