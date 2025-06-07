@@ -13,6 +13,13 @@ Things that work:
 * Motion detection with certain cameras
 * Smart Detections using [Frigate](https://github.com/blakeblackshear/frigate)
 
+## Why is it better than plain ONVIF support:
+* Motion detection allows to record only when motion is detected
+* Smart detections record when people or cars are detected, for example
+* Custom support for certain cameras, like Hikvision
+* Supports any RTSP camera, even without ONVIF support
+* Allows to create multiple instances, in case you want to add multiple NVR/DVR cameras to protect, as with current onvif support only a single camera is supported
+
 ## Documentation
 
 View the documentation at <https://technonene.github.io/unifi-cam-proxy/>
