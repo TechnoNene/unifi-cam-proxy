@@ -1,2 +1,20 @@
 # Simple workflow for previewing GitHub Pages before merging a PR
 name: Deploy PR Pages preview
+
+on:
+  # Runs on pushes targeting the gh-pages branch
+  push:
+    branches: ["gh-pages"]
+  workflow_dispatch:
+    branches: ["gh-pages"]
+    inputs:
+      pr_number:
+        description: Pull request number to preview
+        required: true
+        type: string
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy-preview:
+    runs-on: ubuntu-latest
+    
