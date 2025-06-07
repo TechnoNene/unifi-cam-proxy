@@ -21,7 +21,8 @@ class RTSPCam(UnifiCamBase):
         for i, stream_index in enumerate(["video1", "video2", "video3"]):
             if not i < len(self.args.source):
                 i = -1
-            self.stream_source[stream_index] = self.args.source[i]
+            src = self.args.source[i].replace("{codec}", self.args.video_codec)
+            self.stream_source[stream_index] = src
         if not self.args.snapshot_url:
             self.start_snapshot_stream()
 
@@ -55,7 +56,7 @@ class RTSPCam(UnifiCamBase):
             cmd = (
                 f"AV_LOG_FORCE_NOCOLOR=1 ffmpeg -loglevel level+{self.args.loglevel} "
                 f"-nostdin -y -re -rtsp_transport {self.args.rtsp_transport} "
-                f'-i "{self.args.source[-1]}" '
+                f'-i "{self.args.source[-1].replace("{codec}", self.args.video_codec)}" '
                 "-r 1 "
                 f"-update 1 {self.snapshot_dir}/screen.jpg"
             )
