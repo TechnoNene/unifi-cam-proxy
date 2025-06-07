@@ -107,6 +107,12 @@ def parse_args():
     parser.add_argument(
         "--verbose", "-v", action="store_true", help="increase output verbosity"
     )
+    parser.add_argument(
+        "--video-codec",
+        default="h264",
+        choices=["h264", "h265"],
+        help="Video codec used for RTSP streams",
+    )
 
     sp = parser.add_subparsers(
         help="Camera implementations",

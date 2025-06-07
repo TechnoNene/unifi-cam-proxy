@@ -87,5 +87,5 @@ class ReolinkNVRCam(UnifiCamBase):
     async def get_stream_source(self, stream_index: str) -> str:
         return (
             f"rtsp://{self.args.username}:{self.args.password}@{self.args.ip}:554"
-            f"/h264Preview_{int(self.args.channel) + 1:02}_main"
+            f"/{'h264Preview' if self.args.video_codec == 'h264' else 'h265Preview'}_{int(self.args.channel) + 1:02}_main"
         )
