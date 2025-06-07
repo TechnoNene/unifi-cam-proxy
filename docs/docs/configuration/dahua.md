@@ -26,6 +26,8 @@ optional arguments:
                         Sub Stream subtype index
   --motion-index MOTION_INDEX
                         VideoMotion event index
+  --video-codec {h264,h265}
+                        Select video codec for Protect streams
 ```
 
 ## Lorex LNB4321B
@@ -39,5 +41,16 @@ unifi-cam-proxy --mac '{unique MAC}' -H {NVR IP} -i {camera IP} -c /client.pem -
     dahua \
     -u {username} \
     -p {password} \
+    --ffmpeg-args="-f lavfi -i anullsrc -c:v copy -ar 32000 -ac 1 -codec:a aac -b:a 32k"
+```
+
+### H.265 Example
+
+```sh
+unifi-cam-proxy --mac '{unique MAC}' -H {NVR IP} -i {camera IP} -c /client.pem -t {Adoption token} \
+    dahua \
+    -u {username} \
+    -p {password} \
+    --video-codec h265 \
     --ffmpeg-args="-f lavfi -i anullsrc -c:v copy -ar 32000 -ac 1 -codec:a aac -b:a 32k"
 ```

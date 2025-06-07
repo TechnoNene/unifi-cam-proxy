@@ -24,6 +24,8 @@ optional arguments:
                         Camera username
   --password PASSWORD, -p PASSWORD
                         Camera password
+  --video-codec {h264,h265}
+                        Select video codec for Protect streams
 ```
 
 ## Hikvision DS-2DE3304W-DE
@@ -37,4 +39,12 @@ optional arguments:
 ```sh
 unifi-cam-proxy --mac '{unique MAC}' -H {NVR IP} -i {camera IP} -c /client.pem -t {Adoption token} \
     hikvision -u {username} -p {password}
+```
+
+### H.265 Example
+
+```sh
+unifi-cam-proxy --mac '{unique MAC}' -H {NVR IP} -i {camera IP} -c /client.pem -t {Adoption token} \
+    hikvision -u {username} -p {password} \
+    --video-codec h265
 ```

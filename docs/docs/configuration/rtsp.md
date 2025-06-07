@@ -14,6 +14,23 @@ unifi-cam-proxy -H {NVR IP} -i {Camera IP} -c /client.pem -t {Adoption token} \
   -s {rtsp stream}
 ```
 
+## Options
+
+```text
+optional arguments:
+  --video-codec {h264,h265}
+                        Select video codec for Protect streams
+```
+
+### H.265 Example
+
+```sh
+unifi-cam-proxy -H {NVR IP} -i {Camera IP} -c /client.pem -t {Adoption token} \
+  rtsp \
+  -s {rtsp stream} \
+  --video-codec h265
+```
+
 ## Hardware Acceleration
 
 ```sg

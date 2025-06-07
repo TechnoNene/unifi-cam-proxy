@@ -26,6 +26,8 @@ optional arguments:
                         Sub Stream subtype index
   --motion-index MOTION_INDEX
                         VideoMotion event index
+  --video-codec {h264,h265}
+                        Select video codec for Protect streams
 ```
 
 ## Amcrest IP8M-T2599E
@@ -35,7 +37,7 @@ optional arguments:
 - [ ] Supports smart detection
 - Notes:
   - Camera configuration:
-    - Video codec must be H.264 (H.265/HEVC is not supported).
+    - Select `--video-codec h265` when adopting H.265/HEVC streams.
     - Audio codec should be AAC. If not, adjust the ffmpeg args to re-encode to AAC.
     - Ensure the sub stream is enabled.
     - If desired, ensure motion detection is enabled with the desired anti-dither and detection area.
@@ -51,4 +53,17 @@ unifi-cam-proxy --mac '{unique MAC}' -H {NVR IP} -i {camera IP} -c /client.pem -
     --motion-index 0 \
     --snapshot-channel 1 \
     --ffmpeg-args='-c:a copy -c:v copy -bsf:v "h264_metadata=tick_rate=30000/1001"'
+```
+
+### H.265 Example
+
+```sh
+unifi-cam-proxy --mac '{unique MAC}' -H {NVR IP} -i {camera IP} -c /client.pem -t {Adoption token} \
+    amcrest \
+    -u {username} \
+    -p {password} \
+    --motion-index 0 \
+    --snapshot-channel 1 \
+    --video-codec h265 \
+    --ffmpeg-args='-c:a copy -c:v copy'
 ```
