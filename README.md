@@ -18,7 +18,7 @@ Things that work:
 * Smart detections record when people or cars are detected, for example
 * Custom support for certain cameras, like Hikvision
 * Supports any RTSP camera, even without ONVIF support
-* Allows to create multiple instances, in case you want to add multiple NVR/DVR cameras to protect, as with current onvif support only a single camera is supported
+* Allows to create multiple instances, in case you want to add multiple NVR/DVR cameras to protect, as with current ONVIF support only a single camera is supported
 
 ## Documentation
 
