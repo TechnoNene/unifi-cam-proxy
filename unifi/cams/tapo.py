@@ -36,7 +36,7 @@ class TapoCam(UnifiCamBase):
             self.logger.info("PTZ Not enabled because of insufficient configuration")
 
         except Exception:
-            self.logger.info("PTZ Not enabled, not supportet for this camera")
+            self.logger.info("PTZ Not enabled, not supported for this camera")
 
         if not self.args.snapshot_url:
             self.start_snapshot_stream()
