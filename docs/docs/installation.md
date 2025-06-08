@@ -49,7 +49,7 @@ services:
     build: https://github.com/technonene/unifi-cam-proxy.git
     volumes:
       - "./client.pem:/client.pem"
-    command: unifi-cam-proxy --host {NVR IP} --cert /client.pem --token {Adoption token} rtsp -s rtsp://192.168.201.15:8554/cam'
+    command: unifi-cam-proxy --host {NVR IP} --cert /client.pem --token {Adoption token} --video-codec h265 rtsp -s rtsp://192.168.201.15:8554/cam'
 ```
 
 ### Multiple cameras
@@ -74,6 +74,7 @@ services:
         --mac 'AA:BB:CC:00:11:22'
         --cert /client.pem
         --token {Adoption token}
+        --video-codec h265
         rtsp -s rtsp://192.168.201.15:8554/cam
   proxy-2:
     restart: unless-stopped
@@ -86,6 +87,7 @@ services:
         --mac 'AA:BB:CC:33:44:55'
         --cert /client.pem
         --token {Adoption token}
+        --video-codec h265
         rtsp -s rtsp://192.168.201.15:8554/cam
 ```
 
