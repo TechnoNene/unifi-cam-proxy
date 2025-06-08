@@ -13,7 +13,8 @@ Unlike the basic ONVIF support recently introduced by UniFi Protect, this tool o
 - **Smart Detections:** Enables recording based on object detection, such as people or vehicles.
 - **Camera-Specific Tweaks:** Includes custom support for certain models (e.g., Hikvision).
 - **RTSP Compatibility:** Works with any RTSP camera, even those lacking ONVIF support.
-- **Multiple instance support?** Allows multiple cameras from a single DVR/NVR source to be added independently to Protect — useful since ONVIF support typically limits to one camera per ONVIF device.
+- **Experimental h.265/HEVC codec support:** Adds an experimental support for the h.265 codec, using the flag --video-codec h265, while still defaulting to h.264 as the main codec.
+- **Multiple instance support:** Allows multiple cameras from a single DVR/NVR source to be added independently to Protect — useful since ONVIF support typically limits to one camera per ONVIF device.
 
 ## Credits and Thanks
 

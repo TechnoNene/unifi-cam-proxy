@@ -41,6 +41,20 @@ Using Docker is the recommended installation method.
 The sample docker-compose file below is the recommended deployment for most users.
 Note, the generated certificate must be in the same directory as the `docker-compose.yaml` file.
 
+### example using the default h.264 codec
+
+```yaml
+version: "3.9"
+services:
+  unifi-cam-proxy:
+    restart: unless-stopped
+    build: https://github.com/technonene/unifi-cam-proxy.git
+    volumes:
+      - "./client.pem:/client.pem"
+    command: unifi-cam-proxy --host {NVR IP} --cert /client.pem --token {Adoption token} rtsp -s rtsp://192.168.201.15:8554/cam'
+```
+### example using the h.265/HEVC codec
+
 ```yaml
 version: "3.9"
 services:
@@ -59,6 +73,39 @@ Using docker-compose, your setup might look like the following:
 
 ***Note: This conforms to MAC randomization rules, so should not cause issues with real devices.***
 ***See here for more details: <https://www.mist.com/get-to-know-mac-address-randomization-in-2020/>***
+
+### example using the default h.264 codec
+
+```yaml
+version: "3.5"
+services:
+  proxy-1:
+    restart: unless-stopped
+    build: https://github.com/technonene/unifi-cam-proxy.git
+    volumes:
+      - "./client.pem:/client.pem"
+    command: >-
+        unifi-cam-proxy
+        --host {NVR IP}
+        --mac 'AA:BB:CC:00:11:22'
+        --cert /client.pem
+        --token {Adoption token}
+        rtsp -s rtsp://192.168.201.15:8554/cam
+  proxy-2:
+    restart: unless-stopped
+    build: https://github.com/technonene/unifi-cam-proxy.git
+    volumes:
+      - "./client.pem:/client.pem"
+    command: >-
+        unifi-cam-proxy
+        --host {NVR IP}
+        --mac 'AA:BB:CC:33:44:55'
+        --cert /client.pem
+        --token {Adoption token}
+        rtsp -s rtsp://192.168.201.15:8554/cam
+```
+
+### example using the h.265/HEVC codec
 
 ```yaml
 version: "3.5"
