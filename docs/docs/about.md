@@ -15,8 +15,6 @@ Unlike the basic ONVIF support recently introduced by UniFi Protect, this tool o
 - **RTSP Compatibility:** Works with any RTSP camera, even those lacking ONVIF support.
 - **Multiple instance support?** Allows multiple cameras from a single DVR/NVR source to be added independently to Protect — useful since ONVIF support typically limits to one camera per ONVIF device.
 
-This project is a fork of [Keshav Varma](https://github.com/keshavdv/unifi-cam-proxy)'s original implementation and has been extended and maintained to add more features and improvements.
-
 ## Credits and Thanks
 
 This version is a continuation of a work originally created by [Keshav Varma](https://github.com/keshavdv/unifi-cam-proxy), and has evolved through the valuable contributions and forks of:
