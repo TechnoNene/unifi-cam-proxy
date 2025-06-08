@@ -3,8 +3,6 @@ slug: /
 sidebar_position: 1
 ---
 
-**unifi-cam-proxy** adds UniFi Protect compatibility to non-UniFi cameras. It goes beyond the basic third-party camera functionality of UniFi Protect for ONVIF Cameras added by Ubiquiti. Key features include:
-
 **unifi-cam-proxy** extends UniFi Protect to work with non-UniFi cameras, enabling enhanced compatibility and advanced features not natively supported by Ubiquiti, when using ONVIF.
 
 Unlike the basic ONVIF support recently introduced by UniFi Protect, this tool offers a more flexible and powerful solution. Key features include:
