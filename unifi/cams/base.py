@@ -982,10 +982,10 @@ class UnifiCamBase(metaclass=ABCMeta):
                 f" {self.get_base_ffmpeg_args(stream_index)} -rtsp_transport"
                 f' {self.args.rtsp_transport} -i "{source}"'
                 f" {extra_args} -metadata"
-                f" streamName={stream_name} -f {self.args.format}" - | {sys.executable} -m"
-                #" unifi.clock_sync"
-                #f" --timestamp-modifier {self.args.timestamp_modifier} | nc"
-                #f" {destination[0]} {destination[1]}"
+                f" streamName={stream_name} -f {self.args.format} - | {sys.executable} -m"
+                " unifi.clock_sync"
+                f" --timestamp-modifier {self.args.timestamp_modifier} | nc"
+                f" {destination[0]} {destination[1]}"
             )
 
             if is_dead:
