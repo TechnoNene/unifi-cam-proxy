@@ -974,6 +974,7 @@ class UnifiCamBase(metaclass=ABCMeta):
 
             extra_args = self.get_extra_ffmpeg_args(stream_index)
             if self.args.video_codec == "h265" and "hevc_metadata" not in extra_args:
+                self.logger._log(f"No HEVC_metadata in extra_args: {extra_args}")
                 extra_args += ' -bsf:v "hevc_metadata=aud=insert"'
 
             cmd = (
