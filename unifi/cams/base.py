@@ -984,7 +984,7 @@ class UnifiCamBase(metaclass=ABCMeta):
                 f" {extra_args} -metadata"
                 f" streamName={stream_name} -f {self.args.format} - | {sys.executable} -m"
                 #" unifi.clock_sync"
-                f" --timestamp-modifier {self.args.timestamp_modifier} | nc"
+                #f" --timestamp-modifier {self.args.timestamp_modifier} | nc"
                 f" {destination[0]} {destination[1]}"
             )
 
