@@ -8,7 +8,7 @@ name = "unifi-cam-proxy"
 description = "Enable non-Ubiquiti cameras to work with Unifi NVR"
 requires-python = ">=3.11"
 authors = [
-    { name = "Gustavo", email = "" },
+    { name = "Gustavo", email = "tche.tcheroll@gmail.com" },
 ]
 license = { text = "MIT" }
 dynamic = ["dependencies", "readme", "version"]
